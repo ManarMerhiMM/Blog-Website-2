@@ -17,7 +17,7 @@ class AuthController extends Controller
         $fields = $request->validate([
             'username' => 'required|string|unique:users,username',
             'email' => 'required|string|email|unique:users,email',
-            'password' => 'required|string|confirmed|min:6', // Must send 'password_confirmation'
+            'password' => 'required|string|confirmed|min:8', // Must send 'password_confirmation'
         ]);
 
         $user = User::create([
@@ -64,10 +64,12 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        $request->user()->currentAccessToken()->delete();
+        $token = $request->user()->currentAccessToken();
 
-        return response()->json([
-            'message' => 'Logged out successfully',
-        ]);
+        if ($token && method_exists($token, 'delete')) {
+            $token->delete();
+        }
+
+        return response()->json(['message' => 'Logged out successfully']);
     }
 }
