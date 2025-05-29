@@ -17,8 +17,8 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        \Illuminate\Support\Facades\Route::prefix('api')->group(base_path('routes/api.php'));
     }
 }
