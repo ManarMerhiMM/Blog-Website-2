@@ -33,8 +33,8 @@ useEffect(() => {
                             </Link>
                             <p>{post.content}</p>
 
-                            <Link className='edit-home' to={`/edit/${post.id}`}>
-                            <button>Edit</button> 
+                            <Link className='edit-home' to={`/post/${post.id}`}>
+                            <button>View Post</button> 
                             </Link>
 
                         </div>

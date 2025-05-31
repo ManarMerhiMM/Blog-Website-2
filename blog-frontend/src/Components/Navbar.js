@@ -1,17 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./nav.css"
+import './nav.css';
 
-function Navbar(){
-    return(
+function Navbar() {
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const token = localStorage.getItem("token");
+        setIsLoggedIn(!!token);
+    }, []);
+
+    useEffect(() => {
+        const handleStorageChange = () => {
+            setIsLoggedIn(!!localStorage.getItem("token"));
+        };
+        window.addEventListener("storage", handleStorageChange);
+        return () => window.removeEventListener("storage", handleStorageChange);
+    }, []);
+
+    return (
         <nav className='nav-bar'>
             <Link to="/">Home</Link>
-            <Link  to="/create">Create</Link>
-            <Link to="/register">Register</Link>
-            <Link className='create' to="/login">Login</Link>
-           
+            {isLoggedIn && <Link to="/dashboard">Dashboard</Link>}
+            {!isLoggedIn && <Link to="/register">Register</Link>}
+            {!isLoggedIn ? (
+                <Link className='create' to="/login">Login</Link>
+            ) : (
+                <Link className='create' to="/logout">Logout</Link>
+            )}
         </nav>
-    )
+    );
 }
 
 export default Navbar;

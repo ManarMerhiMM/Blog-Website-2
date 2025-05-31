@@ -7,6 +7,8 @@ import Home from './Pages/HomePage';
 import Navbar from './Components/Navbar';
 import Login from './Pages/LoginPage';
 import Register from './Pages/RegisterPage';
+import Dashboard from './Pages/Dashboard';
+import Logout from './Pages/Logout';
 
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
         <Route path='/post/:id' element={<Postdetail />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/logout' element={<Logout/>} />
+         <Route path='/dashboard' element={<Dashboard />} />
 
       </Routes>
     </BrowserRouter>

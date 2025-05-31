@@ -32,6 +32,7 @@ function Login() {
                 setSuccessMessage("Login successful!");
                 setError(null);
                 localStorage.setItem("token", response.data.token);
+                localStorage.setItem("userEmail", response.data.email); 
                 setIsLoggedIn(true);
                 setTimeout(() => {
                     navigate('/');
@@ -51,6 +52,7 @@ function Login() {
 
     const handleLogout = () => {
         localStorage.removeItem("token");
+        localStorage.removeItem("userEmail"); 
         setIsLoggedIn(false);
         navigate("/login");
     };
