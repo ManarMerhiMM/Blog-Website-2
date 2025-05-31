@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Router } from 'react-router-dom'
+import Postdetail from './Pages/PostDetailPage';
+import Createpost from './Pages/CreatePostPage';
+import Editpost from './Pages/EditPostPage';
+import Home from './Pages/HomePage';
+import Navbar from './Components/Navbar';
+import Login from './Pages/LoginPage';
+import Register from './Pages/RegisterPage';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/create' element={<Createpost />} />
+        <Route path='/edit/:id' element={<Editpost />} />
+        <Route path='/post/:id' element={<Postdetail />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<Register />} />
+
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
