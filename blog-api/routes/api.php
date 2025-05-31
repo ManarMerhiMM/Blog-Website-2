@@ -16,6 +16,7 @@ Route::middleware(['api'])->group(function () {
         Route::patch('/posts/{post}', [PostController::class, 'update']);
         Route::delete('/posts/{post}', [PostController::class, 'destroy']);
 
+        Route::get('/users/{user}', [AuthController:: class, 'dashboard']);
 
         Route::post('/logout', [AuthController::class, 'logout']);
     });

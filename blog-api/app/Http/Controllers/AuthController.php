@@ -72,4 +72,14 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Logged out successfully']);
     }
+
+    public function dashboard(User $user)
+    {
+        $user->load('posts');
+
+        return response()->json([
+            'user_id' => $user->id,
+            'posts' => $user->posts,
+        ]);
+    }
 }
